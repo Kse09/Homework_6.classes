@@ -151,7 +151,7 @@ lecturer2.courses_attached = ['Python', 'ООП и работа с API']
 reviewer1 = Reviewer('Дмитрий', 'Смирнов')
 reviewer1.courses_attached = ['Python', 'Git']
 reviewer2 = Reviewer('Елена', 'Васильева')
-reviewer2.courses_attached = ['SQL', 'Git']
+reviewer2.courses_attached = ['ООП и работа с API', 'Git']
 
 # Проверяющие выставляют оценки студентам
 reviewer1.rate_hw(student1, 'Python', 9)
