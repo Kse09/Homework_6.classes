@@ -77,6 +77,6 @@ class Reviewer(Mentor):
         else:
             return 'Ошибка'
 
-        def __str__(self):
-            return (f'Имя: {self.name}\n'
+    def __str__(self):
+        return (f'Имя: {self.name}\n'
                 f'Фамилия: {self.surname}')
