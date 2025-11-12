@@ -37,12 +37,29 @@ class Student:
                f'Курсы в процессе изучения: {courses_in_progress}\n'
                f'Завершенные курсы: {finished_courses}')
 
+    def get_avg_grade(self):
+        all_grades = []
+        for course_grades in self.grades.values():
+            all_grades.extend(course_grades)
+        return sum(all_grades) / len(all_grades) if all_grades else 0
+
+    def __gt__(self, other):
+        return self.get_avg_grade() > other.get_avg_grade()
+
+    def __lt__(self, other):
+        return self.get_avg_grade() < other.get_avg_grade()
+
+    def __eq__(self, other):
+        return self.get_avg_grade() == other.get_avg_grade()
+
+
 
 class Mentor:
     def __init__(self, name, surname):
         self.name = name
         self.surname = surname
         self.courses_attached = []
+
 
 
 class Lecturer(Mentor):
@@ -61,6 +78,22 @@ class Lecturer(Mentor):
                f'Фамилия: {self.surname}\n'
                f'Средняя оценка за лекции: {average_lect_grade:.1f}')
 
+    def get_avg_grade(self):
+        all_grades = []
+        for course_grades in self.grades.values():
+            all_grades.extend(course_grades)
+        return sum(all_grades) / len(all_grades) if all_grades else 0
+
+    def __gt__(self, other):
+        return self.get_avg_grade() > other.get_avg_grade()
+
+    def __lt__(self, other):
+        return self.get_avg_grade() < other.get_avg_grade()
+
+    def __eq__(self, other):
+        return self.get_avg_grade() == other.get_avg_grade()
+
+
 
 class Reviewer(Mentor):
     def rate_hw(self, student, course, grade):
@@ -78,7 +111,8 @@ class Reviewer(Mentor):
         return (f'Имя: {self.name}\n'
                 f'Фамилия: {self.surname}')
 
-# Проверка работы кода
+
+# Проверка работы кода из пункта 1
 some_reviewer = Reviewer('Some', 'Buddy')
 some_lecturer = Lecturer('Some', 'Buddy')
 some_student = Student('Ruoy', 'Eman', 'your_gender')
@@ -86,10 +120,28 @@ some_student.courses_in_progress = ['Python', 'Git']
 some_student.finished_courses = ['Введение в программирование']
 some_student.grades = {'Python': [10, 9.5, 10]}
 some_lecturer.grades = {'Python': [10, 9.5, 10]}
-
 print("====Проверяющие====")
 print(some_reviewer)
 print("\n====Лекторы====")
 print(some_lecturer)
 print("\n====Студенты=====")
 print(some_student)
+
+# Проверка работы кода из пункта 2
+# Создаем студентов и лекторов, добавляем им оценки и сравниваем их
+student1 = Student('Иван', 'Иванов', 'М')
+student2 = Student('Мария', 'Иванова', 'Ж')
+lecturer1 = Lecturer('Петр', 'Петров')
+lecturer2 = Lecturer('Анна', 'Павлова')
+student1.grades = {'Python': [9, 10, 8]}
+student2.grades = {'Python': [7, 8, 6]}
+lecturer1.grades = {'Python': [10, 9, 10]}
+lecturer2.grades = {'Python': [8, 9, 7]}
+print("\nСравнение студентов:")
+print(f"student1 > student2: {student1 > student2}")  
+print(f"student1 < student2: {student1 < student2}")
+print(f"student1 == student2: {student1 == student2}")
+print("\nСравнение лекторов:")
+print(f"lecturer1 > lecturer2: {lecturer1 > lecturer2}")
+print(f"lecturer1 < lecturer2: {lecturer1 < lecturer2}")
+print(f"lecturer1 == lecturer2: {lecturer1 == lecturer2}")
