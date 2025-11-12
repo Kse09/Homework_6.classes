@@ -53,13 +53,11 @@ class Student:
         return self.get_avg_grade() == other.get_avg_grade()
 
 
-
 class Mentor:
     def __init__(self, name, surname):
         self.name = name
         self.surname = surname
         self.courses_attached = []
-
 
 
 class Lecturer(Mentor):
@@ -94,7 +92,6 @@ class Lecturer(Mentor):
         return self.get_avg_grade() == other.get_avg_grade()
 
 
-
 class Reviewer(Mentor):
     def rate_hw(self, student, course, grade):
         if (isinstance(student, Student) and
@@ -110,7 +107,6 @@ class Reviewer(Mentor):
     def __str__(self):
         return (f'Имя: {self.name}\n'
                 f'Фамилия: {self.surname}')
-
 
 # Проверка работы кода из пункта 1
 some_reviewer = Reviewer('Some', 'Buddy')
