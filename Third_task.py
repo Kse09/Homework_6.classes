@@ -45,7 +45,6 @@ class Mentor:
         self.courses_attached = []
 
 
-
 class Lecturer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
@@ -63,8 +62,6 @@ class Lecturer(Mentor):
                f'Средняя оценка за лекции: {average_lect_grade:.1f}')
 
 
-
-
 class Reviewer(Mentor):
     def rate_hw(self, student, course, grade):
         if (isinstance(student, Student) and
@@ -80,3 +77,19 @@ class Reviewer(Mentor):
     def __str__(self):
         return (f'Имя: {self.name}\n'
                 f'Фамилия: {self.surname}')
+
+# Проверка работы кода
+some_reviewer = Reviewer('Some', 'Buddy')
+some_lecturer = Lecturer('Some', 'Buddy')
+some_student = Student('Ruoy', 'Eman', 'your_gender')
+some_student.courses_in_progress = ['Python', 'Git']
+some_student.finished_courses = ['Введение в программирование']
+some_student.grades = {'Python': [10, 9.5, 10]}
+some_lecturer.grades = {'Python': [10, 9.5, 10]}
+
+print("====Проверяющие====")
+print(some_reviewer)
+print("\n====Лекторы====")
+print(some_lecturer)
+print("\n====Студенты=====")
+print(some_student)
